@@ -1,4 +1,5 @@
 streamlit
+projector-installer
 rdkit-pypi
 Pillow
 
