@@ -32,7 +32,7 @@ def main():
         smiles_inputs = [smiles.strip() for smiles in smiles_inputs]
         smiles_inputs = [smiles.replace('"','') for smiles in smiles_inputs]
         smiles_inputs = [smiles.replace("\n","") for smiles in smiles_inputs ]
-        smiles_inputs = [smiles.upper() for smiles in smiles_inputs if smiles]
+        # smiles_inputs = [smiles.upper() for smiles in smiles_inputs if smiles]
         
         smiles_list = smiles_inputs
         
