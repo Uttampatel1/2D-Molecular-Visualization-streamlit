@@ -58,7 +58,7 @@ def main():
                     else:
                         st.warning(f"Invalid SMILES string: {smiles} ⚠️")
         else:
-            st.warning(f"Input SMILES string     ⚠️")
+            st.warning(f"Input SMILES string ⚠️")
 
 if __name__ == "__main__":
     main()
