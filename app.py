@@ -18,7 +18,7 @@ def get_molecular_formula_and_weight(smiles_input):
         return formula, weight
     else:
         return None, None
-
+# @st.cache_data(ttl=3600)  # 👈 Cache data for 1 hour (=3600 seconds)
 @st.cache_data
 def display_img(smiles_list):
     image_id = 0 
