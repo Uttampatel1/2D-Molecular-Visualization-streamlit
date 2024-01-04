@@ -25,7 +25,7 @@ def main():
                 st.subheader(f"ID : {i+1}")
                 try:
                     molview_url = f"https://embed.molview.org/v1/?mode=balls&smiles={smiles}"
-                    components.iframe(molview_url, width=300, height=300, scrolling=True)
+                    components.iframe(molview_url, width=700, height=400, scrolling=True)
                     st.write(f"SMILES: {smiles}")
                 except:
                     st.warning(f"Invalid SMILES string: {smiles} ⚠️")
