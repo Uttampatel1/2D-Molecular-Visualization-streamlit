@@ -2,7 +2,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 def main():
-    st.set_page_config(page_title="3D Molecular Visualization", page_icon="🧪", layout="wide")
+    st.set_page_config(page_title="3D Molecular Visualization", page_icon="🧪")
     st.title("3D Molecular Visualization 🌐")
 
     # Larger input box
