@@ -6,7 +6,7 @@ from rdkit.Chem import Descriptors
 def generate_2d_structure_image(smiles_input, image_id):
     mol = Chem.MolFromSmiles(smiles_input)
     if mol is not None:
-        return image_id, Draw.MolToImage(mol, size=(400, 400))  # Adjusted size for side-by-side display
+        return image_id, Draw.MolToImage(mol, size=(600, 600))  # Adjusted size for side-by-side display
     else:
         return image_id, None
 
