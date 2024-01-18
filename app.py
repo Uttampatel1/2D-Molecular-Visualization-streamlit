@@ -22,6 +22,7 @@ def get_molecular_formula_and_weight(smiles_input):
     
 # @st.cache_resource(experimental_allow_widgets=True)
 @st.cache_data
+# @st.cache_data(ttl=3600)
 def display_img(smiles_list):
     image_id = 0
     data_for_csv = []
