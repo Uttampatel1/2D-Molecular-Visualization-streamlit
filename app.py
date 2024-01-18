@@ -76,14 +76,14 @@ def main():
 
     if st.button("Generate Images"):
         display_img(smiles_list)
-    csv_content = generate_csv_content(data_for_csv)
-    st.download_button(
-            "Download CSV File",
-            csv_content,
-            "file.csv",
-            "text/csv",
-            key='download-csv'
-            )
+    # csv_content = generate_csv_content(data_for_csv)
+    # st.download_button(
+    #         "Download CSV File",
+    #         csv_content,
+    #         "file.csv",
+    #         "text/csv",
+    #         key='download-csv'
+    #         )
 
 if __name__ == "__main__":
     main()
