@@ -25,16 +25,18 @@ def main():
 
     conversion_type = st.radio("Select conversion type:", ("pIC50 to IC50", "IC50 to pIC50"))
 
+    default_unit = "nanometer"  # Default unit set to nanometer
+
     if conversion_type == "pIC50 to IC50":
         pic50 = st.number_input("Enter pIC50 value:", min_value=0.0, step=0.1)
-        unit = st.selectbox("Select unit of concentration:", ("millimeter", "micrometer", "nanometer"))
+        unit = st.selectbox("Select unit of concentration:", ("millimeter", "micrometer", "nanometer"), index=2)
         if st.button("Convert"):
             ic50 = pic50_to_ic50(pic50, unit)
             st.success(f"IC50 value: {ic50:.6f} {unit}")
 
     elif conversion_type == "IC50 to pIC50":
         ic50 = st.number_input("Enter IC50 value:", min_value=0.0, step=0.000001)
-        unit = st.selectbox("Select unit of concentration:", ("millimeter", "micrometer", "nanometer"))
+        unit = st.selectbox("Select unit of concentration:", ("millimeter", "micrometer", "nanometer"), index=2)
         if st.button("Convert"):
             pic50 = ic50_to_pic50(ic50, unit)
             st.success(f"pIC50 value: {pic50:.2f}")
