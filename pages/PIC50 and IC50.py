@@ -2,21 +2,21 @@ import streamlit as st
 import math
 
 def pic50_to_ic50(pic50, unit):
-    if unit == "millimeter":
+    if unit == "millimolar":
         ic50 = math.pow(10, pic50)
-    elif unit == "micrometer":
+    elif unit == "micromolar":
         ic50 = math.pow(10, 6-pic50)
-    elif unit == "nanometer":
+    elif unit == "nanomolar":
         ic50 = math.pow(10, 9-pic50)
     return ic50
 
 def ic50_to_pic50(ic50, unit):
     pic50 = None
-    if unit == "millimeter":
+    if unit == "millimolar":
         pic50 = -math.log10(ic50)
-    elif unit == "micrometer":
+    elif unit == "micromolar":
         pic50 = 6 -math.log10(ic50 )
-    elif unit == "nanometer":
+    elif unit == "nanomolar":
         pic50 = 9 - math.log10(ic50 )
     return pic50
 
