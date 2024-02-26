@@ -1,23 +1,23 @@
 import streamlit as st
-import numpy as np
+import math
 
 def pic50_to_ic50(pic50, unit):
     if unit == "millimeter":
-        ic50 = np.power(10, -pic50)
+        ic50 = math.pow(10, pic50)
     elif unit == "micrometer":
-        ic50 = np.power(10, -6-pic50)
+        ic50 = math.pow(10, 6-pic50)
     elif unit == "nanometer":
-        ic50 = np.power(10, -9-pic50)
+        ic50 = math.pow(10, 9-pic50)
     return ic50
 
 def ic50_to_pic50(ic50, unit):
     pic50 = None
     if unit == "millimeter":
-        pic50 = -np.log10(ic50)
+        pic50 = -math.log10(ic50)
     elif unit == "micrometer":
-        pic50 = -np.log10(ic50 * 1e6)
+        pic50 = 6 -math.log10(ic50 )
     elif unit == "nanometer":
-        pic50 = -np.log10(ic50 * 1e9)
+        pic50 = 9 - math.log10(ic50 )
     return pic50
 
 def main():
@@ -28,14 +28,14 @@ def main():
     default_unit = "nanometer"  # Default unit set to nanometer
 
     if conversion_type == "pIC50 to IC50":
-        pic50 = st.number_input("Enter pIC50 value:", min_value=0.0, step=0.1)
+        pic50 = st.number_input("Enter pIC50 value:", min_value=0.0)
         unit = st.selectbox("Select unit of concentration:", ("millimeter", "micrometer", "nanometer"), index=2)
         if st.button("Convert"):
             ic50 = pic50_to_ic50(pic50, unit)
             st.success(f"IC50 value: {ic50:.6f} {unit}")
 
     elif conversion_type == "IC50 to pIC50":
-        ic50 = st.number_input("Enter IC50 value:", min_value=0.0, step=0.000001)
+        ic50 = st.number_input("Enter IC50 value:", min_value=0.0)
         unit = st.selectbox("Select unit of concentration:", ("millimeter", "micrometer", "nanometer"), index=2)
         if st.button("Convert"):
             pic50 = ic50_to_pic50(ic50, unit)
