@@ -21,25 +21,29 @@ def ic50_to_pic50(ic50, unit):
     return pic50
 
 def main():
+    st.set_page_config(page_title="PIC50 to IC50 Converter", page_icon=":test_tube:", layout="centered")
     st.title("pIC50 to IC50 Converter")
 
-    conversion_type = st.radio("Select conversion type:", ("pIC50 to IC50", "IC50 to pIC50"))
+    conversion_type = st.radio("Select conversion type:", ("🔍 pIC50 to IC50", "🔬 IC50 to pIC50"))
 
     default_unit = "nanometer"  # Default unit set to nanometer
 
-    if conversion_type == "pIC50 to IC50":
+    if conversion_type == "🔍 pIC50 to IC50":
         pic50 = st.number_input("Enter pIC50 value:", min_value=0.0)
         unit = st.selectbox("Select unit of concentration:", ("millimolar", "micromolar", "nanomolar"), index=2)
         if st.button("Convert"):
             ic50 = pic50_to_ic50(pic50, unit)
-            st.success(f"IC50 value: {ic50:.6f} {unit}")
+            st.write(f"🎉 IC50 value: {ic50:.6f} {unit}")
+            st.markdown(f"<h4> IC50 value: {ic50:.6f} {unit} </h4>" ,unsafe_allow_html=True)
+            
 
-    elif conversion_type == "IC50 to pIC50":
+    elif conversion_type == "🔬 IC50 to pIC50":
         ic50 = st.number_input("Enter IC50 value:", min_value=0.0)
         unit = st.selectbox("Select unit of concentration:", ("millimolar", "micromolar", "nanomolar"), index=2)
         if st.button("Convert"):
             pic50 = ic50_to_pic50(ic50, unit)
-            st.success(f"pIC50 value: {pic50:.2f}")
+            st.write(f"pIC50 value: {pic50:.2f}")
+            st.markdown(f"<h4> pIC50 value: {pic50:.3f} {unit}</h4>" , unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
