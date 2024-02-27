@@ -33,7 +33,7 @@ def main():
         unit = st.selectbox("Select unit of concentration:", ("millimolar", "micromolar", "nanomolar"), index=2)
         if st.button("Convert"):
             ic50 = pic50_to_ic50(pic50, unit)
-            st.write(f"🎉 IC50 value: {ic50:.6f} {unit}")
+            # st.write(f"🎉 IC50 value: {ic50:.6f} {unit}")
             st.markdown(f"<h4> IC50 value: {ic50:.6f} {unit} </h4>" ,unsafe_allow_html=True)
             
 
@@ -42,7 +42,7 @@ def main():
         unit = st.selectbox("Select unit of concentration:", ("millimolar", "micromolar", "nanomolar"), index=2)
         if st.button("Convert"):
             pic50 = ic50_to_pic50(ic50, unit)
-            st.write(f"pIC50 value: {pic50:.2f}")
+            # st.write(f"pIC50 value: {pic50:.2f}")
             st.markdown(f"<h4> pIC50 value: {pic50:.3f} {unit}</h4>" , unsafe_allow_html=True)
 
 if __name__ == "__main__":
