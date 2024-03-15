@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <script type="text/javascript" src="static/ChemDoodleWeb.js"></script>
+    <title>SMILES Viewer</title>
+</head>
+<body>
+    <h1>SMILES Viewer</h1>
+    <form method="post">
+        <label for="smiles">Enter SMILES (separated by commas):</label>
+        <input type="text" name="smiles" id="smiles" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    {% if mol_data %}
+        {% for data in mol_data %}
+            <div class="predict">
+                <div class="mol-image">
+                    <h3>Generated 2D Structure:</h3>
+                    <img src="data:image/png;base64,{{ data['mol_img'] }}" alt="Molecule">
+                    <p <strong>Isomeric SMILES:</strong> {{ data['mol_info']['Isomeric SMILES'] }}</p>
+                </div>
+
+                <div class="transformCanvas">
+                    <h3>Generated 3D Structure:</h3>
+                    <canvas id="transformBallAndStick_{{ loop.index }}" width="300" height="250"></canvas>
+                    <script>
+                        let transformBallAndStick_{{ loop.index }} = new ChemDoodle.TransformCanvas3D('transformBallAndStick_{{ loop.index }}', 300, 250);
+                        transformBallAndStick_{{ loop.index }}.styles.set3DRepresentation('Ball and Stick');
+                        transformBallAndStick_{{ loop.index }}.styles.backgroundColor = 'black';
+                        let molFile_{{ loop.index }} = {{ data['mol_file']|tojson|safe }};
+                        let molecule_{{ loop.index }} = ChemDoodle.readMOL(molFile_{{ loop.index }}, 1);
+                        transformBallAndStick_{{ loop.index }}.loadMolecule(molecule_{{ loop.index }});
+                    </script>
+                </div> 
+
+                <!-- <div class="mol-info">
+                    <h2>Molecule Information:</h2>
+                    <ul>
+                        <li><strong>Formula:</strong> {{ data['mol_info']['Formula'] }}</li>
+                        <li><strong>Exact Mass:</strong> {{ data['mol_info']['Exact Mass'] }}</li>
+                        <li><strong>Molecular Weight:</strong> {{ data['mol_info']['Molecular Weight'] }}</li>
+                        <li><strong>Canonical SMILES:</strong> {{ data['mol_info']['Canonical SMILES'] }}</li>
+                        <li><strong>Isomeric SMILES:</strong> {{ data['mol_info']['Isomeric SMILES'] }}</li>
+                    </ul>
+                </div> -->
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
